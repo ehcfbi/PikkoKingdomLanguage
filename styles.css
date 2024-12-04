@@ -47,3 +47,8 @@ body {
     width: 20px; /* 固定幅 */
     height: 20px; /* 固定高さ */
 }
+
+/* 画像を左右反転させるクラス */
+.flip-horizontal {
+    transform: scaleX(-1);
+}

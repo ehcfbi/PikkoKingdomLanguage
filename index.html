@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,11 +77,27 @@
                 // 特定のクラスの組み合わせを検出して画像を変更
                 if (classCombination.includes('char_koigh char_yaigh')) { // 例えば、char_aとchar_bが続けて入力された場合
                     // 元の要素を指定して削除（char_aとchar_b）
-                    imgElements.forEach(img => {
-                        if (img.classList.contains('char_koigh') || img.classList.contains('char_yaigh')) {
-                            line.removeChild(img);
+                    let firstCharFound = false;
+                    imgElements = imgElements.filter(img => {
+                        if (img.classList.contains('char_koigh') && !firstCharFound) {
+                            firstCharFound = true;
+                            return false;
                         }
+                        return true;
                     });
+
+                    let secondCharFound = false;
+                    imgElements = imgElements.filter(img => {
+                        if (img.classList.contains('char_yaigh') && !secondCharFound) {
+                            secondCharFound = true;
+                            return false;
+                        }
+                        return true;
+                    });
+
+                    // 残った要素を再度 line に追加
+                    line.innerHTML = '';
+                    imgElements.forEach(img => line.appendChild(img));
 
                     // 新しい要素を挿入
                     const newCharImage = document.createElement('img');

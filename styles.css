@@ -34,3 +34,8 @@ body {
     padding: 10px;
     font-size: 18px;
 }
+
+.output img {
+    width: 20px;  /* ここで表示される画像の幅を小さくします */
+    height: 20px; /* ここで表示される画像の高さを小さくします */
+}

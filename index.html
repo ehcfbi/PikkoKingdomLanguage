@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- これを追加 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PikkoKindomLanguage</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -12,15 +12,41 @@
         <button class="key"><img src="char_yaigh.png" alt="yaigh"></button>
         <button class="key"><img src="char_di.png" alt="di"></button>
         <!-- 他の文字も同様に追加 -->
+        <button id="newline" class="key">Enter</button>
     </div>
     <div id="output" class="output"></div>
     <script>
         document.querySelectorAll('.key').forEach(button => {
             button.addEventListener('click', () => {
-                const charImage = button.querySelector('img').cloneNode(true);
-                charImage.style.width = "20px";  // ここで幅を設定
-                charImage.style.height = "20px"; // ここで高さを設定
-                document.getElementById('output').appendChild(charImage);
+                if (button.id === "newline") {
+                    // 改行を追加
+                    const lineBreak = document.createElement('div');
+                    lineBreak.classList.add('line-break');
+                    document.getElementById('output').appendChild(lineBreak);
+                } else {
+                    const charImage = button.querySelector('img').cloneNode(true);
+                    const outputDiv = document.getElementById('output');
+                    const lastLine = outputDiv.lastChild;
+                    
+                    if (lastLine && lastLine.classList.contains('line-break')) {
+                        lastLine.appendChild(charImage);
+                    } else {
+                        const line = document.createElement('div');
+                        line.classList.add('line');
+                        line.appendChild(charImage);
+                        outputDiv.appendChild(line);
+                    }
+
+                    // 行数に基づいてスタイルを調整
+                    const lines = document.querySelectorAll('.line');
+                    lines.forEach((line, index) => {
+                        if ((index + 1) % 2 === 0) {
+                            line.style.textAlign = 'right';
+                        } else {
+                            line.style.textAlign = 'left';
+                        }
+                    });
+                }
             });
         });
     </script>

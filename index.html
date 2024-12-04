@@ -9,39 +9,39 @@
 <body>
     <div class="keyboard">
         <button class="key"><img src="char_koigh.png" alt="koigh"></button>
-        <button class="key"><img src="char_yaigh.png" alt="yaigh"></button>
+        <button class="key"><img src="char_yaigh.png" alt="yaigh""></button>
         <button class="key"><img src="char_di.png" alt="di" class="char_di"></button>
         <!-- 他の文字も同様に追加 -->
-        <button id="newline" class="key">Enter</button>
+        <button id="newline" class="key">改行</button>
     </div>
     <div id="output" class="output"></div>
     <script>
         document.querySelectorAll('.key').forEach(button => {
-    button.addEventListener('click', () => {
-        const outputDiv = document.getElementById('output');
-        if (button.id === "newline") {
-            // 改行を追加
-            const line = document.createElement('div');
-            line.classList.add('line');
-            outputDiv.appendChild(line);
-        } else {
-            const charImage = button.querySelector('img').cloneNode(true);
-            let lastLine = outputDiv.lastElementChild;
+            button.addEventListener('click', () => {
+                const outputDiv = document.getElementById('output');
+                if (button.id === "newline") {
+                    // 改行を追加
+                    const line = document.createElement('div');
+                    line.classList.add('line');
+                    outputDiv.appendChild(line);
+                } else {
+                    const charImage = button.querySelector('img').cloneNode(true);
+                    let lastLine = outputDiv.lastElementChild;
 
-            // 最初の改行前に文字が挿入される場合を処理
-            if (!lastLine || !lastLine.classList.contains('line')) {
-                lastLine = document.createElement('div');
-                lastLine.classList.add('line');
-                outputDiv.appendChild(lastLine);
-            }
+                    // 最初の改行前に文字が挿入される場合を処理
+                    if (!lastLine || !lastLine.classList.contains('line')) {
+                        lastLine = document.createElement('div');
+                        lastLine.classList.add('line');
+                        outputDiv.appendChild(lastLine);
+                    }
 
-            const lines = document.querySelectorAll('.line');
-            const isEvenLine = (lines.length % 2 === 0);
+                    const lines = document.querySelectorAll('.line');
+                    const isEvenLine = (lines.length % 2 === 0);
 
-            if (isEvenLine) {
-                // 偶数行の場合は逆順に挿入
+                    if (isEvenLine) {
+                        // 偶数行の場合は逆順に挿入
                         lastLine.insertBefore(charImage, lastLine.firstChild);
-                        // 特定のクラス（例えばchar2）の画像を左右反転
+                        // 特定のクラス（例えばchar_b）の画像を左右反転
                         if (charImage.classList.contains('char_di')) {
                             charImage.classList.add('flip-horizontal');
                         }

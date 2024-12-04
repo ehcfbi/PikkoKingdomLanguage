@@ -51,12 +51,12 @@
                     }
 
                     // 文字列の組み合わせを監視
-                    checkCombination(outputDiv);
+                    checkCombination(outputDiv, isEvenLine);
                 }
             });
         });
 
-        function checkCombination(outputDiv) {
+        function checkCombination(outputDiv, isEvenLine) {
             const lines = document.querySelectorAll('.line');
 
             lines.forEach(line => {
@@ -69,14 +69,26 @@
                     });
                 });
 
+                classCombination = classCombination.trim();
+
                 // 特定のクラスの組み合わせを検出して画像を変更
-                if (classCombination.trim() === 'char_koigh char_yaigh') { // 例えば、char_aとchar_bが続けて入力された場合
-                    line.innerHTML = ''; // 元の内容をクリア
+                if (classCombination.includes('char_koigh char_yaigh')) { // 例えば、char_aとchar_bが続けて入力された場合
                     const newCharImage = document.createElement('img');
                     newCharImage.src = 'new_char_koigh,yaigh.png'; // 新しい画像ファイルのパス
                     newCharImage.alt = 'koigh,yaigh';
                     newCharImage.classList.add('char_koigh,yaigh');
+
+                    // 元の要素を削除
+                    while (line.firstChild) {
+                        line.removeChild(line.firstChild);
+                    }
+                    // 新しい要素を挿入
                     line.appendChild(newCharImage);
+
+                    if (isEvenLine) {
+                        // 偶数行の場合は左右反転
+                        newCharImage.classList.add('flip-horizontal');
+                    }
                 }
             });
         }

@@ -10,7 +10,7 @@
     <div class="keyboard">
         <button class="key"><img src="char_koigh.png" alt="koigh"></button>
         <button class="key"><img src="char_yaigh.png" alt="yaigh"></button>
-        <button class="key"><img src="char_di.png" alt="di"></button>
+        <button class="key"><img src="char_di.png" alt="di" class="char_di"></button>
         <!-- 他の文字も同様に追加 -->
         <button id="newline" class="key">Enter</button>
     </div>
@@ -40,14 +40,18 @@
 
             if (isEvenLine) {
                 // 偶数行の場合は逆順に挿入
-                lastLine.insertBefore(charImage, lastLine.firstChild);
-            } else {
-                // 奇数行の場合は順序通りに挿入
-                lastLine.appendChild(charImage);
-            }
-        }
-    });
-});
+                        lastLine.insertBefore(charImage, lastLine.firstChild);
+                        // 特定のクラス（例えばchar2）の画像を左右反転
+                        if (charImage.classList.contains('char_di')) {
+                            charImage.classList.add('flip-horizontal');
+                        }
+                    } else {
+                        // 奇数行の場合は順序通りに挿入
+                        lastLine.appendChild(charImage);
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>

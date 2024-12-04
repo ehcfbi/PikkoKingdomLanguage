@@ -23,12 +23,6 @@
             // 改行を追加
             const line = document.createElement('div');
             line.classList.add('line');
-            const lines = document.querySelectorAll('.line');
-            if ((lines.length + 1) % 2 === 0) {
-                line.classList.add('line-right');
-            } else {
-                line.classList.add('line-left');
-            }
             outputDiv.appendChild(line);
         } else {
             const charImage = button.querySelector('img').cloneNode(true);
@@ -38,28 +32,19 @@
             if (!lastLine || !lastLine.classList.contains('line')) {
                 lastLine = document.createElement('div');
                 lastLine.classList.add('line');
-                const lines = document.querySelectorAll('.line');
-                if ((lines.length + 1) % 2 === 0) {
-                    lastLine.classList.add('line-right');
-                } else {
-                    lastLine.classList.add('line-left');
-                }
                 outputDiv.appendChild(lastLine);
             }
 
-            lastLine.appendChild(charImage);
-
-            // 行数に基づいてスタイルを調整
             const lines = document.querySelectorAll('.line');
-            lines.forEach((line, index) => {
-                if ((index + 1) % 2 === 0) {
-                    line.classList.add('line-right');
-                    line.classList.remove('line-left');
-                } else {
-                    line.classList.add('line-left');
-                    line.classList.remove('line-right');
-                }
-            });
+            const isEvenLine = (lines.length % 2 === 0);
+
+            if (isEvenLine) {
+                // 偶数行の場合は逆順に挿入
+                lastLine.insertBefore(charImage, lastLine.firstChild);
+            } else {
+                // 奇数行の場合は順序通りに挿入
+                lastLine.appendChild(charImage);
+            }
         }
     });
 });

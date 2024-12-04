@@ -54,3 +54,13 @@ body {
     width: 20px; /* 固定幅 */
     height: 20px; /* 固定高さ */
 }
+
+/* 奇数行に適用するスタイル */
+.line-left {
+    text-align: left;
+}
+
+/* 偶数行に適用するスタイル */
+.line-right {
+    text-align: right;
+}

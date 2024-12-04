@@ -21,8 +21,8 @@ body {
 }
 
 .key img {
-    width: 40px;
-    height: 40px;
+    width: 40px;  /* キーボードボタンの画像サイズ */
+    height: 40px; /* キーボードボタンの画像サイズ */
 }
 
 .output {
@@ -32,10 +32,9 @@ body {
     max-width: 500px;
     border: 1px solid #ccc;
     padding: 10px;
-    font-size: 18px;
 }
 
 .output img {
-    width: 10px;  /* ここで表示される画像の幅を小さくします */
-    height: 10px; /* ここで表示される画像の高さを小さくします */
+    width: 20px;  /* 出力される画像の幅を20ピクセルに設定 */
+    height: 20px; /* 出力される画像の高さを20ピクセルに設定 */
 }

@@ -9,6 +9,7 @@ body {
 
 .keyboard {
     display: flex;
+    flex-wrap: wrap;  /* ボタンが折り返されるように */
     gap: 10px;
     margin-bottom: 20px;
 }
@@ -21,20 +22,39 @@ body {
 }
 
 .key img {
-    width: 40px;  /* キーボードボタンの画像サイズ */
-    height: 40px; /* キーボードボタンの画像サイズ */
+    width: 40px;
+    height: 40px;
 }
 
 .output {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    max-width: 500px;
+    max-width: 100%;  /* 親要素の幅に合わせる */
     border: 1px solid #ccc;
     padding: 10px;
 }
 
 .output img {
-    width: 20px;  /* 出力される画像の幅を20ピクセルに設定 */
-    height: 20px; /* 出力される画像の高さを20ピクセルに設定 */
+    max-width: 100%;
+    max-height: 100%;
+    width: 20px; 
+    height: 20px;
+}
+
+/* メディアクエリでレスポンシブデザインを適用 */
+@media (max-width: 600px) {
+    .keyboard {
+        gap: 5px;
+    }
+
+    .key img {
+        width: 30px;  /* スマートフォン用に小さくする */
+        height: 30px;
+    }
+
+    .output img {
+        width: 15px;  /* スマートフォン用に小さくする */
+        height: 15px;
+    }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PikkoKindomLanguage</title>
+    <title>PikkoKingdomLanguage</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,24 +18,24 @@
     <script>
         document.querySelectorAll('.key').forEach(button => {
             button.addEventListener('click', () => {
+                const outputDiv = document.getElementById('output');
                 if (button.id === "newline") {
                     // 改行を追加
-                    const lineBreak = document.createElement('div');
-                    lineBreak.classList.add('line-break');
-                    document.getElementById('output').appendChild(lineBreak);
+                    const line = document.createElement('div');
+                    line.classList.add('line');
+                    outputDiv.appendChild(line);
                 } else {
                     const charImage = button.querySelector('img').cloneNode(true);
-                    const outputDiv = document.getElementById('output');
-                    const lastLine = outputDiv.lastChild;
-                    
-                    if (lastLine && lastLine.classList.contains('line-break')) {
-                        lastLine.appendChild(charImage);
-                    } else {
-                        const line = document.createElement('div');
-                        line.classList.add('line');
-                        line.appendChild(charImage);
-                        outputDiv.appendChild(line);
+                    let lastLine = outputDiv.lastElementChild;
+
+                    // 最初の改行前に文字が挿入される場合を処理
+                    if (!lastLine || !lastLine.classList.contains('line')) {
+                        lastLine = document.createElement('div');
+                        lastLine.classList.add('line');
+                        outputDiv.appendChild(lastLine);
                     }
+
+                    lastLine.appendChild(charImage);
 
                     // 行数に基づいてスタイルを調整
                     const lines = document.querySelectorAll('.line');

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PikkoKingdomLanguage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="keyboard">
+        <button class="key"><img src="char_koigh.png" alt="koigh"></button>
+        <button class="key"><img src="char_yaigh.png" alt="yaigh"></button>
+        <button class="key"><img src="char_di.png" alt="di"></button>
+        <!-- 他の文字も同様に追加 -->
+    </div>
+    <textarea id="output" rows="4" cols="50"></textarea>
+    <script>
+        document.querySelectorAll('.key').forEach(button => {
+            button.addEventListener('click', () => {
+                const altText = button.querySelector('img').alt;
+                document.getElementById('output').value += altText;
+            });
+        });
+    </script>
+</body>
+</html>

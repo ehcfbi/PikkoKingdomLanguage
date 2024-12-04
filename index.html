@@ -45,17 +45,41 @@
                     if (isEvenLine) {
                         // 偶数行の場合は逆順に挿入
                         lastLine.insertBefore(charImage, lastLine.firstChild);
-                        // 特定のクラス（例えばchar_b）の画像を左右反転
-                        if (charImage.classList.contains('char_di')) {
-                            charImage.classList.add('flip-horizontal');
-                        }
                     } else {
                         // 奇数行の場合は順序通りに挿入
                         lastLine.appendChild(charImage);
                     }
+
+                    // 文字列の組み合わせを監視
+                    checkCombination(outputDiv);
                 }
             });
         });
+
+        function checkCombination(outputDiv) {
+            const lines = document.querySelectorAll('.line');
+
+            lines.forEach(line => {
+                let classCombination = '';
+                line.childNodes.forEach(img => {
+                    img.classList.forEach(className => {
+                        if (className.startsWith('char')) {
+                            classCombination += className + ' ';
+                        }
+                    });
+                });
+
+                // 特定のクラスの組み合わせを検出して画像を変更
+                if (classCombination.trim() === 'char_koigh char_yaigh') { // 例えば、char_aとchar_bが続けて入力された場合
+                    line.innerHTML = ''; // 元の内容をクリア
+                    const newCharImage = document.createElement('img');
+                    newCharImage.src = 'new_char_koigh,yaigh.png'; // 新しい画像ファイルのパス
+                    newCharImage.alt = 'koigh,yaigh';
+                    newCharImage.classList.add('char_koigh,yaigh');
+                    line.appendChild(newCharImage);
+                }
+            });
+        }
     </script>
 </body>
 </html>

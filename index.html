@@ -8,13 +8,9 @@
 </head>
 <body>
     <div class="keyboard">
-        <button class="key"><img src="char_koigh.png" alt="koigh" class="char_koigh"></button>
-        <button class="key"><img src="char_yaigh.png" alt="yaigh" class="char_yaigh"></button>
-        <button class="key"><img src="char_pikko.png" alt="pikko"></button>
-        <button class="key"><img src="char_shie.png" alt="shie"></button>
-        <button class="key"><img src="char_di.png" alt="di" class="char_di"></button>
-        <button class="key"><img src="char_niekae.png" alt="niekae""></button>
-        <button class="key"><img src="char_pi.png" alt="pi"></button>
+        <button class="key"><img src="char_a.png" alt="あ" class="char_a"></button>
+        <button class="key"><img src="char_b.png" alt="い" class="char_b"></button>
+        <button class="key"><img src="char_c.png" alt="う" class="char_c"></button>
         <!-- 他の文字も同様に追加 -->
         <button id="newline" class="key">Enter</button>
     </div>
@@ -61,10 +57,13 @@
 
             lines.forEach(line => {
                 let classCombination = '';
+                let imgElements = [];
+
                 line.childNodes.forEach(img => {
                     img.classList.forEach(className => {
                         if (className.startsWith('char')) {
                             classCombination += className + ' ';
+                            imgElements.push(img); // 画像要素を保存
                         }
                     });
                 });
@@ -73,16 +72,18 @@
 
                 // 特定のクラスの組み合わせを検出して画像を変更
                 if (classCombination.includes('char_koigh char_yaigh')) { // 例えば、char_aとchar_bが続けて入力された場合
+                    // 元の要素を指定して削除（char_aとchar_b）
+                    imgElements.forEach(img => {
+                        if (img.classList.contains('char_koigh') || img.classList.contains('char_yaigh')) {
+                            line.removeChild(img);
+                        }
+                    });
+
+                    // 新しい要素を挿入
                     const newCharImage = document.createElement('img');
                     newCharImage.src = 'new_char_koigh,yaigh.png'; // 新しい画像ファイルのパス
                     newCharImage.alt = 'koigh,yaigh';
                     newCharImage.classList.add('char_koigh,yaigh');
-
-                    // 元の要素を削除
-                    while (line.firstChild) {
-                        line.removeChild(line.firstChild);
-                    }
-                    // 新しい要素を挿入
                     line.appendChild(newCharImage);
 
                     if (isEvenLine) {

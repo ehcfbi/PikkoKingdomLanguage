@@ -16,11 +16,13 @@
     <div id="output" class="output"></div>
     <script>
         document.querySelectorAll('.key').forEach(button => {
-            button.addEventListener('click', () => {
-                const charImage = button.querySelector('img').cloneNode(true);
-                document.getElementById('output').appendChild(charImage);
-            });
-        });
+    button.addEventListener('click', () => {
+        const charImage = button.querySelector('img').cloneNode(true);
+        charImage.style.width = "20px";  // ここで幅を設定
+        charImage.style.height = "20px"; // ここで高さを設定
+        document.getElementById('output').appendChild(charImage);
+    });
+});
     </script>
 </body>
 </html>

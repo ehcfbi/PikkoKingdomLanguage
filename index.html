@@ -13,12 +13,12 @@
         <button class="key"><img src="char_di.png" alt="di"></button>
         <!-- 他の文字も同様に追加 -->
     </div>
-    <textarea id="output" rows="4" cols="50"></textarea>
+    <div id="output" class="output"></div>
     <script>
         document.querySelectorAll('.key').forEach(button => {
             button.addEventListener('click', () => {
-                const altText = button.querySelector('img').alt;
-                document.getElementById('output').value += altText;
+                const charImage = button.querySelector('img').cloneNode(true);
+                document.getElementById('output').appendChild(charImage);
             });
         });
     </script>

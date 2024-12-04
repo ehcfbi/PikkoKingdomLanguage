@@ -41,26 +41,9 @@ body {
     gap: 5px;
 }
 
-.line-break {
-    display: block;
-    width: 100%;
-    height: 1px;
-    margin: 5px 0;
-}
-
 .output img {
     max-width: 100%;
     max-height: 100%;
     width: 20px; /* 固定幅 */
     height: 20px; /* 固定高さ */
-}
-
-/* 奇数行に適用するスタイル */
-.line-left {
-    text-align: left;
-}
-
-/* 偶数行に適用するスタイル */
-.line-right {
-    text-align: right;
 }

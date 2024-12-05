@@ -8,8 +8,9 @@
 </head>
 <body>
     <div class="keyboard">
-        <button class="key"><img src="char_koigh.png" alt="koigh" class="char_koigh"></button>
-        <button class="key"><img src="char_yaigh.png" alt="yaigh" class="char_yaigh"></button>
+        <button class="key"><img src="char_koigh,yaigh.png" alt="koigh,yaigh""></button>
+        <button class="key"><img src="char_koigh.png" alt="koigh"></button>
+        <button class="key"><img src="char_yaigh.png" alt="yaigh"></button>
         <button class="key"><img src="char_pikko.png" alt="pikko"></button>
         <button class="key"><img src="char_shie.png" alt="shie"></button>
         <button class="key"><img src="char_di.png" alt="di" class="char_di"></button>
@@ -45,6 +46,8 @@
                     if (isEvenLine) {
                         // 偶数行の場合は逆順に挿入
                         lastLine.insertBefore(charImage, lastLine.firstChild);
+
+                        // 偶数行でchar_bを反転
                         if (charImage.classList.contains('char_di')) {
                             charImage.classList.add('flip-horizontal');
                         }
@@ -52,70 +55,9 @@
                         // 奇数行の場合は順序通りに挿入
                         lastLine.appendChild(charImage);
                     }
-
-                    // 文字列の組み合わせを監視
-                    checkCombination(outputDiv, isEvenLine);
                 }
             });
         });
-
-        function checkCombination(outputDiv, isEvenLine) {
-            const lines = document.querySelectorAll('.line');
-
-            lines.forEach(line => {
-                let classCombination = '';
-                let imgElements = [];
-
-                line.childNodes.forEach(img => {
-                    img.classList.forEach(className => {
-                        if (className.startsWith('char')) {
-                            classCombination += className + ' ';
-                            imgElements.push(img); // 画像要素を保存
-                        }
-                    });
-                });
-
-                classCombination = classCombination.trim();
-
-                // 特定のクラスの組み合わせを検出して画像を変更
-                if (classCombination.includes('char_koigh char_yaigh')) { // 例えば、char_aとchar_bが続けて入力された場合
-                    // 元の要素を指定して削除（char_aとchar_b）
-                    let firstCharFound = false;
-                    imgElements = imgElements.filter(img => {
-                        if (img.classList.contains('char_koigh') && !firstCharFound) {
-                            firstCharFound = true;
-                            return false;
-                        }
-                        return true;
-                    });
-
-                    let secondCharFound = false;
-                    imgElements = imgElements.filter(img => {
-                        if (img.classList.contains('char_yaigh') && !secondCharFound) {
-                            secondCharFound = true;
-                            return false;
-                        }
-                        return true;
-                    });
-
-                    // 残った要素を再度 line に追加
-                    line.innerHTML = '';
-                    imgElements.forEach(img => line.appendChild(img));
-
-                    // 新しい要素を挿入
-                    const newCharImage = document.createElement('img');
-                    newCharImage.src = 'new_char_koigh,yaigh.png'; // 新しい画像ファイルのパス
-                    newCharImage.alt = 'koigh,yaigh';
-                    newCharImage.classList.add('char_koigh,yaigh');
-                    line.appendChild(newCharImage);
-
-                    if (isEvenLine) {
-                        // 偶数行の場合は新しい画像を左右反転
-                        newCharImage.classList.add('flip-horizontal');
-                    }
-                }
-            });
-        }
     </script>
 </body>
 </html>

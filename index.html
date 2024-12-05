@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="keyboard">
-        <button class="key"><img src="char_koigh,yaigh.png" alt="koigh,yaigh""></button>
+        <button class="key"><img src="char_koigh,yaigh.png" alt="koigh,yaigh" class="char_koigh,yaigh"></button>
         <button class="key"><img src="char_koigh.png" alt="koigh"></button>
         <button class="key"><img src="char_yaigh.png" alt="yaigh"></button>
         <button class="key"><img src="char_pikko.png" alt="pikko"></button>
@@ -48,7 +48,7 @@
                         lastLine.insertBefore(charImage, lastLine.firstChild);
 
                         // 偶数行でchar_bとchar_cを反転
-                        if (charImage.classList.contains('char_b') || charImage.classList.contains('char_c')) {
+                        if (charImage.classList.contains('char_di') || charImage.classList.contains('char_koigh,yaigh')) {
                             charImage.classList.add('flip-horizontal');
                         }
                     } else {

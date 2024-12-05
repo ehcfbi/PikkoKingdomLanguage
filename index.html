@@ -45,6 +45,9 @@
                     if (isEvenLine) {
                         // 偶数行の場合は逆順に挿入
                         lastLine.insertBefore(charImage, lastLine.firstChild);
+                        if (charImage.classList.contains('char_di')) {
+                            charImage.classList.add('flip-horizontal');
+                        }
                     } else {
                         // 奇数行の場合は順序通りに挿入
                         lastLine.appendChild(charImage);
@@ -75,7 +78,7 @@
                 classCombination = classCombination.trim();
 
                 // 特定のクラスの組み合わせを検出して画像を変更
-                if (classCombination.includes('char_a char_b')) { // 例えば、char_aとchar_bが続けて入力された場合
+                if (classCombination.includes('char_koigh char_yaigh')) { // 例えば、char_aとchar_bが続けて入力された場合
                     // 元の要素を指定して削除（char_aとchar_b）
                     let firstCharFound = false;
                     imgElements = imgElements.filter(img => {
@@ -110,13 +113,6 @@
                         // 偶数行の場合は新しい画像を左右反転
                         newCharImage.classList.add('flip-horizontal');
                     }
-                } else if (classCombination.includes('char_di')) {
-                    // char_c が偶数行にある場合は反転
-                    imgElements.forEach(img => {
-                        if (img.classList.contains('char_di')) {
-                            img.classList.add('flip-horizontal');
-                        }
-                    });
                 }
             });
         }

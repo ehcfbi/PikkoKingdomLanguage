@@ -15,6 +15,7 @@
         <button class="key"><img src="char_shie.png" alt="shie"></button>
         <button class="key"><img src="char_di.png" alt="di" class="char_di"></button>
         <button class="key"><img src="char_niekae.png" alt="niekae""></button>
+        <button class="key"><img src="char_eigh.png" alt="eigh"ckass="char_eigh"></button>
         <button class="key"><img src="char_pi.png" alt="pi"></button>
         <!-- 他の文字も同様に追加 -->
         <button id="newline" class="key">Enter</button>
@@ -48,7 +49,7 @@
                         lastLine.insertBefore(charImage, lastLine.firstChild);
 
                         // 偶数行でchar_bとchar_cを反転
-                        if (charImage.classList.contains('char_di') || charImage.classList.contains('char_koigh,yaigh')) {
+                        if (charImage.classList.contains('char_di') || charImage.classList.contains('char_koigh,yaigh') || charImage.classList.contains('char_koigh,yaigh')) {
                             charImage.classList.add('flip-horizontal');
                         }
                     } else {
